@@ -414,17 +414,7 @@ ax.text(x=1.12, y=0, s="Os municípios em cinza não possuem dados disponíveis"
 plt.tight_layout()
 ax.axis('off');
 
-# Analisando onde se localizam os treineiros
 
-treineiros_count = dados_geo[dados_geo['IN_TREINEIRO'] == 1].groupby(['name_muni', 'geometry']).size().sort_values(ascending = False).reset_index()
-
-treineiros_count = gpd.GeoDataFrame(treineiros_count, geometry = 'geometry')
-
-treineiros_count.rename(columns = {0: 'Treineiros'}, inplace = True)
-
-treineiros_count['% Treineiros'] = (treineiros_count['Treineiros'] / treineiros_count['Treineiros'].sum()).round(4) * 100
-
-treineiros_count[['name_muni', 'Treineiros', '% Treineiros']].sort_values('% Treineiros', ascending=False).head(10)
 
 """## **Insights**
 
