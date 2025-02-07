@@ -37,7 +37,7 @@ A análise é limitada a dados de um único ano e região, portanto, não podemo
 
 📌 **Desigualdade no desempenho por raça:** A maioria dos candidatos se autodeclara branca, e esse grupo obteve, em média, notas mais altas do que candidatos pretos e pardos.  
 
-📌 **Perfil dos treineiros:** A grande maioria dos treineiros (alunos realizando a prova para praticar seus conhecimentos) possui menos de 18 anos e todos estão cursando Ensino Médio com previsão de conclusão após 2023. A maioria desses alunos são da capital.  
+📌 **Perfil dos treineiros:** A grande maioria dos treineiros (alunos realizando a prova para praticar seus conhecimentos) possui menos de 18 anos e todos estão cursando Ensino Médio com previsão de conclusão após 2023. 
 
 📌 **Correlação entre provas:** A maior correlação de desempenho foi observada entre as provas de Ciências Humanas e Linguagens. Alunos que se saem bem em uma dessas provas tendem a ter bom desempenho na outra. Por outro lado, a prova de Redação apresenta a menor correlação com as demais.  
 
