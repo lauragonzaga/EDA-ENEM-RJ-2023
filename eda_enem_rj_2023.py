@@ -131,6 +131,9 @@ dados_enem_rj['TP_COR_RACA'] = dados_enem_rj['TP_COR_RACA'].map(cor_raca_map)
 
 dados_enem_rj['TP_COR_RACA'].value_counts()
 
+
+
+
 """## **Visualizações**"""
 
 # Definindo a paleta de cores
@@ -145,6 +148,9 @@ param_titulo = {'weight': 'bold', 'size': 16}
 # Definindo estilo dos graficos
 plt.style.use('seaborn-v0_8-whitegrid')
 
+
+
+# Gráfico de pizza: participantes por gênero
 contagem = dict(dados_enem_rj['TP_SEXO'].value_counts(normalize = True).round(3) * 100) # Valores em porcentagem
 
 
@@ -160,6 +166,9 @@ plt.pie(contagem.values(),
 plt.title('Quantidade de Participantes por Gênero',
           fontdict = param_titulo);
 
+
+
+# Gráfico de barras: participantes por raça
 plt.figure(figsize = (7,5))
 
 sns.countplot(dados_enem_rj,
@@ -174,9 +183,10 @@ plt.title('Quantidade de Alunos Participantes por Cor/Raça',
 
 plt.tight_layout()
 
+
+
+# Histograma: participantes por faixa etária
 fig = plt.figure(figsize = (10,5))
-
-
 
 sns.histplot(data = dados_enem_rj,
              x = 'TP_FAIXA_ETARIA',
@@ -196,6 +206,9 @@ plt.xticks(ticks = range(1, len(faixa_etaria_map) + 1),
 plt.xlabel('')
 plt.ylabel('Número de Participantes');
 
+
+
+# Boxplot: Distribuição das Notas das Provas de Múltipla Escolha
 plt.figure(figsize = (7,5))
 
 sns.boxplot(notas_filtradas[notas[0:4]],
@@ -207,6 +220,9 @@ plt.ylabel('')
 plt.title('Distribuição das Notas nas Provas de Múltipla Escolha',
           fontdict = param_titulo);
 
+
+
+# Boxplot: distribuição das notas por gênero
 fig, ax = plt.subplots(nrows=1, ncols = 5, figsize = (15,6), sharey=True)
 
 
@@ -233,6 +249,9 @@ fig.legend(title="Gênero",
 plt.tight_layout()
 plt.show()
 
+
+
+# Boxplot: distribuição das notas por raça
 fig, ax = plt.subplots(nrows=1, ncols = 5, figsize = (15,6), sharey=True)
 
 
@@ -257,6 +276,11 @@ fig.legend(title="Cor/Raça",
 plt.tight_layout()
 plt.show()
 
+
+
+
+
+# Boxplot: distribuição das notas por tipo da escola
 fig, ax = plt.subplots(nrows=1, ncols = 5, figsize = (15,6), sharey=True)
 
 
@@ -287,6 +311,10 @@ fig.legend(labels = ['Pública', 'Privada'],
 plt.tight_layout()
 plt.show()
 
+
+
+
+# Boxplot: distribuição das notas treineiros x não-treineiros
 fig, ax = plt.subplots(nrows=1, ncols = 5, figsize = (15,6), sharey=True)
 
 
@@ -318,6 +346,10 @@ fig.legend(labels = treineiro_map.values(),
 plt.tight_layout()
 plt.show()
 
+
+
+
+# Boxplot: distribuição das notas por renda mensal da família
 fig, ax = plt.subplots(figsize= (15,8))
 
 sns.boxplot(dados_enem_rj,
@@ -357,6 +389,10 @@ fig.legend(labels = valores_renda,
 plt.xlabel('Categoria Renda Familiar')
 plt.ylabel('');
 
+
+
+
+# Heatmap: correlação entre as provas
 plt.figure(figsize = (7,7))
 
 corr_provas = dados_enem_rj[notas].corr()
@@ -372,11 +408,16 @@ sns.heatmap(corr_provas,
 plt.title('Correlação entre as Provas',
           fontdict = param_titulo);
 
+
+
+# Visualização geoespacial
 !pip install geobr geopandas
 
 import geobr
 import geopandas as gpd
 
+
+# Criando GeoDataFrame com as médias por município
 municipios = geobr.read_municipality(code_muni = 'RJ', year = 2022)
 
 dados_geo = dados_enem_rj.merge(municipios, left_on = 'CO_MUNICIPIO_PROVA', right_on= 'code_muni', how = 'outer')
@@ -390,13 +431,15 @@ medias_municipios = medias_municipios.rename(columns = {col: media for col, medi
 medias_municipios = medias_municipios.reset_index()
 medias_municipios = gpd.GeoDataFrame(medias_municipios, geometry='geometry')
 
-# Calculando média total das provas
-
+# Calculando média total de todas as provas
 medias_municipios['media_total'] = medias_municipios[nomes_provas].mean(axis = 1)
 
 # Municípios com melhor desempenho total
 medias_municipios[['name_muni', 'media_total']].sort_values(by= 'media_total', ascending = False).head(10)
 
+
+
+# Criando a visualização de mapa 
 fig, ax = plt.subplots(figsize = (15,8))
 
 plt.title('Média das Notas de Matemática por Município',
@@ -416,17 +459,8 @@ ax.text(x=1.12, y=0, s="Os municípios em cinza não possuem dados disponíveis"
 plt.tight_layout()
 ax.axis('off');
 
-# Analisando onde se localizam os treineiros
 
-treineiros_count = dados_geo[dados_geo['IN_TREINEIRO'] == 1].groupby(['name_muni', 'geometry']).size().sort_values(ascending = False).reset_index()
 
-treineiros_count = gpd.GeoDataFrame(treineiros_count, geometry = 'geometry')
-
-treineiros_count.rename(columns = {0: 'Treineiros'}, inplace = True)
-
-treineiros_count['% Treineiros'] = (treineiros_count['Treineiros'] / treineiros_count['Treineiros'].sum()).round(4) * 100
-
-treineiros_count[['name_muni', 'Treineiros', '% Treineiros']].sort_values('% Treineiros', ascending=False).head(10)
 
 """## **Insights**
 
@@ -439,6 +473,10 @@ A análise é limitada a dados de um único ano e região, portanto, não podemo
 *  **Correlação entre provas:**  A maior correlação de desempenho foi observada entre as provas de Ciências Humanas e Linguagens. Alunos que se saem bem em uma dessas provas tendem a ter bom desempenho na outra. Por outro lado, a prova de Redação apresenta a menor correlação com as demais.
 *  **Desempenho por tipo de escola e renda:** Os alunos de escolas privadas tendem a obter melhores resultados em todas as provas do que os de escolas públicas. Além disso, a nota média aumenta com a elevação da renda familiar.
 *  **Municípios com melhor desempenho:** Os municípios com as melhores médias totais foram Niterói, Nova Friburgo, Teresópolis, Volta Redonda e Resende. A capital ocupa a sétima posição.
+
+
+
+
 
 ## **Relatório**
 
