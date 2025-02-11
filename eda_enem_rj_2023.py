@@ -86,7 +86,7 @@ faixa_etaria_map = {1: "-17", 2: "17", 3: "18", 4: "19", 5: "20", 6: "21", 7: "2
 
 dados_enem_rj['TP_FAIXA_ETARIA'].map(faixa_etaria_map).value_counts(normalize = True).round(3) * 100
 
-# Calculando quantidade de inscritos por tipo de escola
+# Calculando quantidade de participantes por tipo de escola
 
 tipo_escola_map = {1: 'Não Respondeu', 2: 'Pública', 3: 'Privada'}
 
@@ -114,7 +114,7 @@ conclusao_map = {1: 'Já concluí o Ensino Médio', 2: 'Estou cursando e conclui
 
 dados_enem_rj[dados_enem_rj['IN_TREINEIRO'] == 1]['TP_ST_CONCLUSAO'].map(conclusao_map).value_counts(normalize = True).round(3).head(5) * 100
 
-# Calculando quantidade de inscritos por sexo
+# Calculando quantidade de participantes por sexo
 
 sexo_map = {'M': 'Masculino', 'F': 'Feminino'}
 
@@ -122,7 +122,7 @@ dados_enem_rj['TP_SEXO'] = dados_enem_rj['TP_SEXO'].map(sexo_map)
 
 dados_enem_rj['TP_SEXO'].value_counts()
 
-# Calculando quantidade de inscritos por raça
+# Calculando quantidade de participantes por raça
 
 cor_raca_map = {0: 'Não declarado', 1: 'Branca', 2: 'Preta', 3: 'Parda', 4: 'Amarela', 5: 'Indígena'}
 
@@ -157,7 +157,7 @@ plt.pie(contagem.values(),
         textprops={'fontsize': 14})
 
 
-plt.title('Quantidade de Inscritos por Gênero',
+plt.title('Quantidade de Participantes por Gênero',
           fontdict = param_titulo);
 
 plt.figure(figsize = (7,5))
@@ -194,7 +194,7 @@ plt.xticks(ticks = range(1, len(faixa_etaria_map) + 1),
            labels = faixa_etaria_map.values(),
            rotation = 30)
 plt.xlabel('')
-plt.ylabel('Número de Inscritos');
+plt.ylabel('Número de Participantes');
 
 plt.figure(figsize = (7,5))
 
@@ -481,7 +481,7 @@ ax[0, 1].set_xticks(ticks = range(1, len(faixa_etaria_map) + 1),
                    labels = faixa_etaria_map.values(),
                    rotation = 30)
 ax[0, 1].set_xlabel('')
-ax[0, 1].set_ylabel('Número de Inscritos');
+ax[0, 1].set_ylabel('Número de Participantes');
 
 
 
@@ -508,7 +508,7 @@ ax[1, 1].pie(contagem.values(),
              startangle=90,
              textprops={'fontsize': 14})
 
-ax[1, 1].set_title('Quantidade de Inscritos por Gênero',
+ax[1, 1].set_title('Quantidade de Participantes por Gênero',
                    fontdict=param_titulo)
 
 # Gráfico 5
