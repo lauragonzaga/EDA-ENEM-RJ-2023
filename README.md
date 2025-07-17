@@ -1,23 +1,23 @@
-# 📈 Análise Exploratória dos Microdados do ENEM 2023 (RJ)
+# Análise Exploratória dos Microdados do ENEM 2023 (RJ)
 
 Este projeto realiza uma análise exploratória dos microdados do ENEM 2023, focando nos participantes do estado do Rio de Janeiro. A análise abrange limpeza e tratamento de dados, além de diversas visualizações para entender melhor o perfil dos inscritos e seus desempenhos.
 
 ---
 
-### 📊 Fonte dos Dados  
+### Fonte dos Dados  
 Os microdados utilizados nesta análise foram extraídos do conjunto de dados oficial do ENEM 2023, disponibilizado pelo INEP. Você pode acessá-los diretamente no portal do governo:  
 🔗 [Microdados ENEM 2023 - INEP](https://www.gov.br/inep/pt-br/acesso-a-informacao/dados-abertos/microdados/enem)  
 
 ---
 
-### 🖼️ Relatório Visual  
+### Relatório Visual  
 Abaixo está um resumo gráfico de algumas das análises realizadas:  
 
 ![Relatório ENEM RJ 2023](relatório_eda_enem.png)
 
 ---
 
-### 🔍 Principais Análises Realizadas  
+### Principais Análises Realizadas  
 
 ✔️ Distribuição de inscritos por gênero, faixa etária e tipo de escola.  
 ✔️ Comparação do desempenho entre diferentes grupos (gênero, raça, escola, renda familiar).  
@@ -27,7 +27,7 @@ Abaixo está um resumo gráfico de algumas das análises realizadas:
 
 ---
 
-### 💡 Principais Insights  
+### Principais Insights  
 
 A análise é limitada a dados de um único ano e região, portanto, não podemos generalizar resultados sem considerar os microdados de outros anos. Contudo, com base na análise realizada, observamos os seguintes pontos:  
 
@@ -47,7 +47,7 @@ A análise é limitada a dados de um único ano e região, portanto, não podemo
 
 ---
 
-### 🏷 Autor  
+### Autor  
 
 👤  **Laura Gonzaga**  
 📎 [LinkedIn](https://linkedin.com/in/laura-gonzaga)  
